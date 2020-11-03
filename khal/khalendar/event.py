@@ -434,6 +434,19 @@ class Event(object):
             self._vevents[self.ref].pop('LOCATION')
 
     @property
+    def attendees(self):
+        '''
+        Must return a list of icalendar.prop.vCalAddress
+        '''
+        return self._vevents[self.ref].get('ATTENDEE', [])
+
+    def update_attendees(self, attendees):
+        if attendees:
+            self._vevents[self.ref]['ATTENDEE'] = attendees
+        else:
+            self._vevents[self.ref].pop('ATTENDEE')
+
+    @property
     def categories(self):
         try:
             return self._vevents[self.ref].get('CATEGORIES', '').to_ical().decode('utf-8')
@@ -594,6 +607,7 @@ class Event(object):
         if attributes["description"]:
             attributes["description-separator"] = " :: "
         attributes["location"] = self.location.strip()
+        # TODO add attendees attributes
         attributes["all-day"] = allday
         attributes["categories"] = self.categories
         attributes['uid'] = self.uid
