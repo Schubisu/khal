@@ -446,7 +446,7 @@ class Event(object):
         if attendees:
             vCalAddresses = []
             for attendee in attendees:
-                item = icalendar.prop.vCalAddress(f'MAILTO:{attendee.strip()}')
+                item = icalendar.prop.vCalAddress('MAILTO:{}'.format(attendee.strip()))
                 item.params['ROLE'] = icalendar.prop.vText('REQ-PARTICIPANT')
                 # TODO use khard here to receive full information from email address
                 vCalAddresses.append(item)
