@@ -11,6 +11,8 @@ may want to subscribe to `GitHub's tag feed
 0.10.3
 ======
 not released
+* NEW Add widget to interactive event editor that allows adding attendees as
+  comma separated list of email addresses
 
 0.10.2
 ======
